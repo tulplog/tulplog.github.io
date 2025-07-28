@@ -1,1 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>기록 습관 MBTI</title>
+  <style>
+    body {
+      font-family: 'Apple SD Gothic Neo', sans-serif;
+      background-color: #fffaf3;
+      padding: 2rem;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    p.description {
+      text-align: center;
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+    .question {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #fff;
+    }
+    .question h3 {
+      margin-bottom: 1rem;
+    }
+    .question label {
+      display: block;
+      margin: 0.5rem 0;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      border-radius: 10px;
+      background-color: #f0f4ff;
+      border: 1px solid #aac8ff;
+    }
+    button {
+      display: block;
+      margin: 2rem auto 1rem;
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+      background-color: #5578eb;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #415fd1;
+    }
+  </style>
+</head>
+<body>
+  <h1>기록 습관 MBTI</h1>
+  <p class="description">재미로 하는 기록 습관 MBTI입니다. 나의 기록 습관과 가장 가까운 것을 하나만 골라주세요. 콘텐츠 활용시 출처를 꼭 밝혀주세요! @tulplog</p>
 
+  <form id="mbtiForm">
+    <div class="question">
+      <h3>1. 다이어리는 어떤 스타일을 좋아하나요?</h3>
+      <label><input type="radio" name="q1" value="S" required/> 날짜가 있는 데일리/위클리 다이어리</label>
+      <label><input type="radio" name="q1" value="F"/> 무지 노트나 도트 노트</label>
+      <label><input type="radio" name="q1" value="E"/> 콘텐츠형 플래너</label>
+    </div>
+
+    <div class="question">
+      <h3>2. 기록에 비주얼 요소는 얼마나 중요한가요?</h3>
+      <label><input type="radio" name="q2" value="R" required/> 글 위주로 기록</label>
+      <label><input type="radio" name="q2" value="S"/> 간단하게만 꾸밈</label>
+      <label><input type="radio" name="q2" value="E"/> 스티커, 마테 등 비주얼이 중요</label>
+    </div>
+
+    <div class="question">
+      <h3>3. 기록은 주로 언제 하나요?</h3>
+      <label><input type="radio" name="q3" value="R" required/> 자기 전 감정 정리용</label>
+      <label><input type="radio" name="q3" value="S"/> 아침이나 낮 계획 세울 때</label>
+      <label><input type="radio" name="q3" value="F"/> 특정 시간 없이 자유롭게</label>
+    </div>
+
+    <div class="question">
+      <h3>4. 꾸준히 쓰는 편인가요?</h3>
+      <label><input type="radio" name="q4" value="S" required/> 매일 빠짐없이</label>
+      <label><input type="radio" name="q4" value="F"/> 몰아서 쓰는 편</label>
+      <label><input type="radio" name="q4" value="R"/> 감정 따라 다름</label>
+    </div>
+
+    <div class="question">
+      <h3>5. 스티커나 마테는 어떻게 사용하나요?</h3>
+      <label><input type="radio" name="q5" value="R" required/> 거의 안 쓰거나 심플하게</label>
+      <label><input type="radio" name="q5" value="S"/> 의미 있는 곳만 사용</label>
+      <label><input type="radio" name="q5" value="E"/> 감정 표현이자 힐링!</label>
+    </div>
+
+    <div class="question">
+      <h3>6. 가장 중요하게 생각하는 건?</h3>
+      <label><input type="radio" name="q6" value="R" required/> 감정 정리, 나만의 생각</label>
+      <label><input type="radio" name="q6" value="S"/> 일정 정리, 실용성</label>
+      <label><input type="radio" name="q6" value="E"/> 예쁜 비주얼 완성도</label>
+    </div>
+
+    <div class="question">
+      <h3>7. 가장 자주 쓰는 아이템은?</h3>
+      <label><input type="radio" name="q7" value="R" required/> 검정펜, 형광펜, 메모지</label>
+      <label><input type="radio" name="q7" value="E"/> 마스킹테이프, 스티커, 컬러펜</label>
+      <label><input type="radio" name="q7" value="F"/> 사진, 프린트, 잘라 붙이기</label>
+    </div>
+
+    <div class="question">
+      <h3>8. 기록 모임에서 하고 싶은 활동은?</h3>
+      <label><input type="radio" name="q8" value="R" required/> 기록방식이나 철학 나누기</label>
+      <label><input type="radio" name="q8" value="E"/> 예쁜 기록템 공유하기</label>
+      <label><input type="radio" name="q8" value="F"/> 다같이 한 페이지 만들어 보기</label>
+    </div>
+
+    <button type="submit">결과 보기</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    const typeDescriptions = {
+      S: "📘 S-Type (Structure)
+계획과 정리가 잘 되는 기록러예요. 정해진 포맷을 좋아하고 실용성과 꾸준함을 중요하게 여깁니다.",
+      E: "🎨 E-Type (Expression)
+비주얼과 감정 표현이 중요한 타입이에요. 스티커와 색감을 활용해 기록을 예술처럼 즐깁니다.",
+      R: "🖋️ R-Type (Reflection)
+감정과 생각을 담아 조용히 기록하는 타입이에요. 내면을 돌아보는 글쓰기를 좋아해요.",
+      F: "🌀 F-Type (Freeform)
+자유로운 흐름대로 기록하는 타입이에요. 규칙보단 그날의 기분과 즉흥적인 감성을 중요하게 생각해요."
+    };
+
+    document.getElementById("mbtiForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const scores = { S: 0, E: 0, R: 0, F: 0 };
+      for (let value of formData.values()) {
+        scores[value]++;
+      }
+      const topType = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+      document.getElementById("result").innerText = typeDescriptions[topType];
+    });
+  </script>
+</body>
+</html>
