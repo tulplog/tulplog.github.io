@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>기록 습관 MBTI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 750px; margin: auto; line-height: 1.6; }
+    h1 { text-align: center; margin-bottom: 30px; }
+    .question { margin-bottom: 30px; }
+    .question strong { display: block; margin-bottom: 10px; }
+    .options label { display: block; margin: 6px 0; }
+    button { padding: 10px 20px; font-size: 16px; margin-top: 20px; cursor: pointer; }
+    .result { background: #f9f9f9; padding: 20px; border-radius: 10px; margin-top: 30px; display: none; line-height: 1.7; }
+    .result strong { font-size: 18px; }
+    .recommend { margin-top: 10px; }
+  </style>
+</head>
+<body>
+
+<h1>✍️ 기록 습관 MBTI 테스트</h1>
+<form id="mbtiForm">
+  <div id="question-container"></div>
+  <button type="button" onclick="showResult()">결과 보기</button>
+</form>
+
+<div id="result" class="result"></div>
+
+<script>
+  const questions = [
+    {
+      q: "1. 다이어리는 어떤 스타일이 좋아요?",
+      options: ["A. 날짜 있는 플래너", "B. 무지노트, 자유형", "C. 주제형 콘텐츠 플래너"],
+      types: ["S", "F", "R"]
+    },
+    {
+      q: "2. 비주얼 꾸밈은 얼마나 중요한가요?",
+      options: ["A. 거의 안 함, 글 위주", "B. 포인트만 살짝", "C. 스티커, 마테 중요"],
+      types: ["S", "R", "E"]
+    },
+    {
+      q: "3. 기록은 언제 하나요?",
+      options: ["A. 하루 끝, 감정 정리", "B. 아침·낮, 계획할 때", "C. 아무 때나 떠오를 때"],
+      types: ["R", "S", "F"]
+    },
+    {
+      q: "4. 얼마나 꾸준히 써요?",
+      options: ["A. 거의 매일 기록", "B. 몰아서 기록", "C. 감정에 따라 유동적"],
+      types: ["S", "F", "R"]
+    },
+    {
+      q: "5. 스티커나 마테는 어떻게 써요?",
+      options: ["A. 안 쓰거나 간단하게", "B. 의미 있을 때만 포인트", "C. 꾸미는 게 즐거움"],
+      types: ["S", "R", "E"]
+    },
+    {
+      q: "6. 기록할 때 가장 중요한 건?",
+      options: ["A. 감정 정리, 내면 표현", "B. 일정 정리, 실용성", "C. 예쁜 결과물, 비주얼"],
+      types: ["R", "S", "E"]
+    },
+    {
+      q: "7. 자주 쓰는 기록 도구는?",
+      options: ["A. 검정펜, 메모지 등", "B. 스티커, 컬러펜", "C. 사진, 프린트, 오려붙이기"],
+      types: ["S", "R", "E"]
+    },
+    {
+      q: "8. 모임에서 하고 싶은 활동은?",
+      options: ["A. 기록 철학 나누기", "B. 기록템 소개·정보 공유", "C. 다 함께 창작·즉흥 활동"],
+      types: ["R", "E", "F"]
+    }
+  ];
+
+  const descriptions = {
+    S: `📅 <strong>S-Type (정돈형 실용러)</strong><br>
+      - 날짜형 다이어리를 선호하고, 정돈된 글 위주의 기록을 좋아해요.<br>
+      - 계획 세우기, 일정 정리, 루틴 기록에 잘 어울려요.<br>
+      - 꾸미기보단 실용적인 기록 도구를 선호해요.<br>
+      <div class="recommend">
+        📌 <strong>추천 활동:</strong> 루틴 공유, 다꾸템 정보 나누기, 플래너 리뷰 나눔<br>
+        ✏️ <strong>추천 기록템:</strong> 날짜형 플래너, 체크리스트 스탬프, 얇은 펜, 색인 스티커
+      </div>`,
+    R: `💭 <strong>R-Type (감성 내면러)</strong><br>
+      - 감정이 차오를 때 마음을 기록하고, 주제형 다이어리를 즐겨요.<br>
+      - 꾸밈도 의미 위주로 절제된 스타일을 선호해요.<br>
+      - 성찰 중심의 글쓰기에 잘 어울려요.<br>
+      <div class="recommend">
+        📌 <strong>추천 활동:</strong> 감정일기 낭독, '오늘의 감정 한 줄' 나누기<br>
+        ✏️ <strong>추천 기록템:</strong> 감사일기, 질문형 플래너, 마스킹테이프, 잉크펜
+      </div>`,
+    E: `🎨 <strong>E-Type (비주얼 꾸밈러)</strong><br>
+      - 마스킹테이프, 스티커, 사진 등 다양한 소재로 꾸미는 걸 좋아해요.<br>
+      - 비주얼 중심의 기록에 힐링을 느끼고, 완성도를 중요하게 여겨요.<br>
+      - 기록 = 작은 예술작품!<br>
+      <div class="recommend">
+        📌 <strong>추천 활동:</strong> 다꾸 챌린지, 콜라주 워크숍, 스티커 교환<br>
+        ✏️ <strong>추천 기록템:</strong> 무지노트, 마테 세트, 코너형 스티커, 프린트 사진
+      </div>`,
+    F: `🌿 <strong>F-Type (자유 감각러)</strong><br>
+      - 즉흥적이고 형식에 얽매이지 않는 기록을 선호해요.<br>
+      - 오늘은 그림, 내일은 텍스트… 흐름 따라 자유롭게 기록해요.<br>
+      - 자유로운 창작과 놀이형 기록에 잘 어울려요.<br>
+      <div class="recommend">
+        📌 <strong>추천 활동:</strong> 주제 없이 즉석 낙서하기, 자유 기록 릴레이<br>
+        ✏️ <strong>추천 기록템:</strong> 빈 노트, 유성펜, 감정카드, 작은 스케치북
+      </div>`
+  };
+
+  const container = document.getElementById("question-container");
+
+  questions.forEach((q, i) => {
+    const div = document.createElement("div");
+    div.className = "question";
+    div.innerHTML = `<strong>${q.q}</strong>`;
+    q.options.forEach((opt, j) => {
+      div.innerHTML += `
+        <label>
+          <input type="radio" name="q${i}" value="${q.types[j]}" required> ${opt}
+        </label>`;
+    });
+    container.appendChild(div);
+  });
+
+  function showResult() {
+    const form = document.forms["mbtiForm"];
+    const counts = { S: 0, R: 0, E: 0, F: 0 };
+
+    for (let i = 0; i < questions.length; i++) {
+      const selected = form[`q${i}`];
+      if (!selected.value) {
+        alert(`${i + 1}번 문항을 선택해주세요.`);
+        return;
+      }
+      counts[selected.value]++;
+    }
+
+    const topType = Object.entries(counts).sort((a, b) => b[1] - a[1])[0][0];
+    const resultBox = document.getElementById("result");
+    resultBox.innerHTML = descriptions[topType];
+    resultBox.style.display = "block";
+  }
+</script>
+
+</body>
+</html>
